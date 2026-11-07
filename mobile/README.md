@@ -3,7 +3,7 @@
 ALVO mobil uygulaması Expo + React Native + TypeScript + Supabase ile geliştirilir. Web prototipinin yanında ayrı bir uygulama olarak tutulur.
 
 ## Gereksinimler
-- Node.js LTS
+- Node.js 22.13 veya üzeri (Expo SDK 58 gereksinimi)
 - Expo Go (ilk test için) veya Android Studio / Xcode
 - Supabase projesi
 
@@ -23,15 +23,17 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
 Service-role anahtarını mobil uygulamaya kesinlikle koyma. Mobil uygulama public istemci olduğu için erişim RLS politikalarıyla korunmalıdır.
 
 ## Veritabanı
-Önce ana depodaki `supabase/migrations/20261107000000_initial_schema.sql` migration'ını Supabase SQL Editor'de güvenli bir geliştirme projesinde çalıştır. Mevcut canlı veritabanına uygulamadan önce yedek al ve eski `listings` tablosunun taşınmasını kontrol et. Migration henüz otomatik olarak çalıştırılmaz.
+Önce ana depodaki `supabase/migrations/20261107000000_initial_schema.sql` ve ardından `supabase/migrations/20261108000000_enable_message_realtime.sql` migration'larını Supabase SQL Editor'de güvenli bir geliştirme projesinde çalıştır. Mevcut canlı veritabanına uygulamadan önce yedek al ve eski `listings` tablosunun taşınmasını kontrol et. Migration henüz otomatik olarak çalıştırılmaz.
 
 ## Başlat
 ```bash
 npx expo start
 ``
-Terminaldeki QR kodunu Expo Go ile okut. Android emülatör için `npm run android`, iOS simülatör için macOS üzerinde `npm run ios`.
+Terminaldeki QR kodunu Expo Go ile okut. Android emülatör için `npm run android`, iOS simülatör için macOS üzerinde `npm run ios`. Windows bilgisayardan iOS uygulaması derlemek için EAS bulut derlemesini kullan; yerel iOS Simulator/Xcode Windows'ta çalışmaz.
 
 ## Mağaza paketi
+
+Expo SDK 58, React Native 0.88 ve Node.js 22.13+ kullanır. SDK 58 için fiziksel cihazda geliştirme/testte Expo Go yerine EAS development build kullanılması önerilir.
 EAS hesabını bağladıktan sonra:
 ```bash
 npx eas build:configure
