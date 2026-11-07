@@ -23,3 +23,10 @@ python3 -m http.server 8000
 ```
 
 Sonra `http://localhost:8000` adresini açın. Supabase secret/service-role anahtarını hiçbir zaman istemci koduna koymayın; gerçek erişim RLS ile korunmalıdır.
+
+
+## Native mobile app (Android & iOS)
+
+The Expo + React Native application lives in [`mobile/`](mobile/README.md). It includes native navigation, Supabase authentication, live listing reads, listing publishing with private image storage, favorites and direct conversations. Start with the setup guide in `mobile/README.md`.
+
+The mobile app is a separate application from the static web prototype. It requires its own Supabase URL and anon/publishable key in `mobile/.env`; no service-role key belongs in the client. A native app build and device testing are still required before release.
