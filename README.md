@@ -6,34 +6,20 @@
 
 - Light tema, duyarlı mobil/tablet/masaüstü tasarım ve çalışan mobil menü
 - Ana sayfa, kategori listesi, arama sonuçları ve ilan detayları
-- Elektronik, Telefon, Bilgisayar, Ev ve Yaşam, Moda, Giyim, Araç, Yedek Parça, Spor, Hobi, Anne ve Bebek, Diğer kategorileri
-- Örnek ilanlar; başlık, kategori ve şehir içinde arama; kategori filtreleme ve fiyata göre sıralama
+- Türkiye geneli kategoriler, örnek ilanlar, arama, filtre ve fiyat sıralama
 - Ücretsiz ilan formu, fotoğraf önizleme, favoriler ve demo profil/kayıt ekranı
-- Hakkımızda, iletişim, kullanım koşulları ve gizlilik sayfaları
-- Harici JavaScript kütüphanesi, ücretli servis veya derleme adımı gerektirmeyen statik ön yüz
+- Bağımlılıksız statik HTML/CSS/JavaScript ön yüz
 
-## Supabase veritabanı temeli
+## Supabase veritabanı
 
-`supabase/migrations/20261107000000_initial_schema.sql` dosyası Supabase Postgres için `profiles`, `listings`, `listing_images`, `favorites`, `conversations`, `conversation_members`, `messages` ve `reports` tablolarını; indeksleri, kısıtları, profil tetikleyicisini, RLS politikalarını ve private ilan fotoğrafı bucket politikalarını içerir. Kurulum, güvenlik yaklaşımı ve test kontrol listesi için [`supabase/README.md`](supabase/README.md) dosyasına bakın.
+`supabase/migrations/20261107000000_initial_schema.sql` dosyası sekiz uygulama tablosu, indeksler, RLS politikaları, güvenli mesajlaşma RPC’si ve private ilan görseli bucket’ını içerir. Eski ALVO `public.listings` tablosunu verileri silmeden koşullu olarak `listings_legacy_backup_20261108` adına taşır, eski erişim politikalarını kaldırıp yedeği kapatır ve yeni şemayı kurar. Kurulum ve kontrol adımları: [`supabase/README.md`](supabase/README.md).
 
-> Bu aşamada Supabase projesine bağlanılmadı ve ön yüz Supabase’e bağlanmış değildir. Demo verileri halen tarayıcı `localStorage` alanında çalışır. SQL’i önce geliştirme Supabase projesinde uygulayıp RLS senaryolarını doğrulayın.
+> SQL bu değişiklikle hiçbir gerçek Supabase projesinde çalıştırılmadı. Uygulamadan önce üretim yedeği alın ve önce geliştirme projesinde deneyin. Ön yüz henüz Supabase’e bağlı değildir.
 
 ## Çalıştırma
-
-Dosyaları indirin ve `index.html` dosyasını güncel bir tarayıcıda açın. Alternatif olarak kök dizinde basit bir yerel sunucu başlatın:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Ardından `http://localhost:8000` adresine gidin. GitHub Pages üzerinde yayımlamak için repository ayarlarında Pages kaynağı olarak `main` dalı ve kök dizin seçilebilir.
-
-## Güvenlik notları
-
-Supabase istemci uygulamalarında publishable/anon anahtar kullanılabilir; bu anahtarın güvenliği RLS politikalarına dayanır. Service-role/secret anahtarı RLS’i aşabildiği için asla HTML, JavaScript, Git geçmişi veya mobil uygulama paketine eklemeyin. Bu depoda gerçek proje URL’si veya API anahtarı bulunmaz.
-
-## Dosyalar
-
-- `index.html`, `styles.css`, `app.js` — statik ALVO ön yüz prototipi
-- `supabase/migrations/` — sürümlenmiş veritabanı migrasyonları
-- `supabase/README.md` — Türkçe Supabase kurulum ve güvenlik notları
+Sonra `http://localhost:8000` adresini açın. Supabase secret/service-role anahtarını hiçbir zaman istemci koduna koymayın; gerçek erişim RLS ile korunmalıdır.
