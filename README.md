@@ -1,16 +1,22 @@
 # ALVO
 
-**İkinci elin yeni adresi.** ALVO, Türkiye genelinde ücretsiz ikinci el ilanlarını keşfetmek ve yayınlamak için tasarlanan, Türkçe ve mobil uyumlu bir pazar yeri arayüzü prototipidir.
+**İkinci elin yeni adresi.** ALVO, Türkiye genelinde ücretsiz ikinci el ilanlarını keşfetmek ve yayınlamak için tasarlanan Türkçe, mobil uyumlu pazar yeri prototipidir.
 
-## Özellikler
+## Ön yüz özellikleri
 
-- Light tema, duyarlı (mobil/tablet/masaüstü) tasarım ve çalışan mobil menü
+- Light tema, duyarlı mobil/tablet/masaüstü tasarım ve çalışan mobil menü
 - Ana sayfa, kategori listesi, arama sonuçları ve ilan detayları
 - Elektronik, Telefon, Bilgisayar, Ev ve Yaşam, Moda, Giyim, Araç, Yedek Parça, Spor, Hobi, Anne ve Bebek, Diğer kategorileri
 - Örnek ilanlar; başlık, kategori ve şehir içinde arama; kategori filtreleme ve fiyata göre sıralama
-- Ücretsiz ilan formu, fotoğraf önizleme ve tarayıcıda küçültülmüş fotoğraf saklama
-- Favoriler, demo profil/kayıt ekranı, mesajlar ve Hakkımızda/İletişim/Kullanım Koşulları/Gizlilik sayfaları
-- Harici JavaScript kütüphanesi, ücretli servis veya derleme adımı gerektirmez
+- Ücretsiz ilan formu, fotoğraf önizleme, favoriler ve demo profil/kayıt ekranı
+- Hakkımızda, iletişim, kullanım koşulları ve gizlilik sayfaları
+- Harici JavaScript kütüphanesi, ücretli servis veya derleme adımı gerektirmeyen statik ön yüz
+
+## Supabase veritabanı temeli
+
+`supabase/migrations/20261107000000_initial_schema.sql` dosyası Supabase Postgres için `profiles`, `listings`, `listing_images`, `favorites`, `conversations`, `conversation_members`, `messages` ve `reports` tablolarını; indeksleri, kısıtları, profil tetikleyicisini, RLS politikalarını ve private ilan fotoğrafı bucket politikalarını içerir. Kurulum, güvenlik yaklaşımı ve test kontrol listesi için [`supabase/README.md`](supabase/README.md) dosyasına bakın.
+
+> Bu aşamada Supabase projesine bağlanılmadı ve ön yüz Supabase’e bağlanmış değildir. Demo verileri halen tarayıcı `localStorage` alanında çalışır. SQL’i önce geliştirme Supabase projesinde uygulayıp RLS senaryolarını doğrulayın.
 
 ## Çalıştırma
 
@@ -22,12 +28,12 @@ python3 -m http.server 8000
 
 Ardından `http://localhost:8000` adresine gidin. GitHub Pages üzerinde yayımlamak için repository ayarlarında Pages kaynağı olarak `main` dalı ve kök dizin seçilebilir.
 
-## Prototip sınırları
+## Güvenlik notları
 
-Bu sürüm statik HTML/CSS/JavaScript ile çalışan bir ön yüz prototipidir. İlanlar, favoriler ve demo hesap bilgileri yalnızca aynı tarayıcıdaki `localStorage` alanında saklanır; site verisi silinirse kaybolur ve diğer kullanıcılarla senkronize olmaz. Gerçek kullanıcı kimlik doğrulaması, sunucu/veritabanı, fotoğraf yükleme servisi, satıcıya gerçek mesaj gönderimi, moderasyon, ödeme ve işlem güvencesi henüz bağlı değildir. Mesajlar sayfasındaki içerik örnektir; iletişim formu da gerçek e-posta göndermez. Yayına çıkmadan önce backend, güvenlik, kötüye kullanım önlemleri, hukuki metinler ve erişilebilirlik ayrıca tamamlanmalıdır.
+Supabase istemci uygulamalarında publishable/anon anahtar kullanılabilir; bu anahtarın güvenliği RLS politikalarına dayanır. Service-role/secret anahtarı RLS’i aşabildiği için asla HTML, JavaScript, Git geçmişi veya mobil uygulama paketine eklemeyin. Bu depoda gerçek proje URL’si veya API anahtarı bulunmaz.
 
 ## Dosyalar
 
-- `index.html` — Türkçe sayfa iskeleti ve uygulama giriş noktası
-- `styles.css` — Tasarım sistemi ve tüm ekran boyutlarına uyumlu stiller
-- `app.js` — Hash tabanlı sayfa yönlendirme, örnek ilanlar, arama/filtre ve tarayıcı içi etkileşimler
+- `index.html`, `styles.css`, `app.js` — statik ALVO ön yüz prototipi
+- `supabase/migrations/` — sürümlenmiş veritabanı migrasyonları
+- `supabase/README.md` — Türkçe Supabase kurulum ve güvenlik notları
