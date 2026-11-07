@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "ALVO",
+    "slug": "alvo",
+    "scheme": "alvo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.alvo.marketplace"
+    },
+    "android": {
+      "package": "com.alvo.marketplace",
+      "adaptiveIcon": {
+        "backgroundColor": "#16834b"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "ALVO, ilanınıza fotoğraf eklemek için fotoğraf kitaplığınıza erişim ister.",
+          "cameraPermission": "ALVO, ilan fotoğrafı çekmek için kameranıza erişim ister."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
