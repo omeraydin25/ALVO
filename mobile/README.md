@@ -36,9 +36,9 @@ Terminaldeki QR kodunu Expo Go ile okut. Android emülatör için `npm run andro
 Expo SDK 58, React Native 0.88 ve Node.js 22.13+ kullanır. SDK 58 için fiziksel cihazda geliştirme/testte Expo Go yerine EAS development build kullanılması önerilir.
 EAS hesabını bağladıktan sonra:
 ```bash
-npx eas build:configure
-npx eas build --platform android --profile preview
-npx eas build --platform ios --profile preview
+npx eas-cli@latest build:configure
+npx eas-cli@latest build --platform android --profile preview
+npx eas-cli@latest build --platform ios --profile preview
 ``
 
 ## Şu anki kapsam
