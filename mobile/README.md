@@ -46,11 +46,12 @@ npx eas build --platform ios --profile preview
 - E-posta/şifre ile Supabase kayıt ve giriş
 - Fotoğraf seçme, private Storage'a yükleme ve ilan kaydı
 - Favori ekleme/çıkarma ve listeleme
-- Profil ve çıkış
+- Profil, çıkış ve sohbet listesi
+- Satıcıyla gerçek mesaj gönderme ve Supabase Realtime üzerinden yeni mesajları alma
 - Android/iOS uyumlu sekmeli gezinme
 
 ## Henüz tamamlanmayanlar
-- Gerçek mesajlaşma ekranı (veritabanı RPC'si hazır, sohbet arayüzü sonraki aşama)
+- Realtime mesajların çalışması için Supabase Dashboard'da `messages` tablosunun `supabase_realtime` publication'a eklenmesi gerekir.
 - Satıcı ilanlarını yönetme, düzenleme ve silme
 - Push bildirimleri, moderasyon ve mağaza yayınlama
 - Uygulama cihazlarda çalıştırılıp test edilmedi; build alınmadı.
